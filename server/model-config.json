@@ -37,5 +37,13 @@
   },
   "Message": {
     "dataSource": null
+  },
+  "Task": {
+    "dataSource": "postgresDs",
+    "public": true
+  },
+  "Author": {
+    "dataSource": "postgresDs",
+    "public": true
   }
 }

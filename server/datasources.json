@@ -4,13 +4,13 @@
     "connector": "memory"
   },
   "postgresDs": {
-    "name": "postgresDs",
-    "connector": "postgresql",
-    "url": "",
     "host": "localhost",
     "port": 5432,
-    "user": "Tester",
+    "url": "",
+    "database": "Task_Management",
     "password": "Penis545",
-    "database": "Task_Management"
+    "name": "postgresDs",
+    "connector": "postgresql",
+    "user": "Tester"
   }
 }
