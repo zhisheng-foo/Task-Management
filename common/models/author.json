@@ -1,0 +1,31 @@
+{
+  "name": "Author",
+  "plural": "Authors",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true,
+      "generated" : true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "relations": {
+    "tasks": {
+      "type": "hasMany",
+      "model": "Task",
+      "foreignKey": "authorId"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

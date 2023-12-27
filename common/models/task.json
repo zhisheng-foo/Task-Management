@@ -1,0 +1,53 @@
+{
+  "name": "Task",
+  "plural": "Tasks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "generated": true,
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "enum": [
+        "todo",
+        "in-progress",
+        "completed"
+      ]
+    },
+    "dueDate": {
+      "type": "date",
+      "required": true
+    },
+    "authorId": {
+      "type": "number",
+      "required": true,
+      "description": "Foreign key for the author of the task"
+    }
+  },
+  "relations": {
+    "author": {
+      "type": "belongsTo",
+      "model": "Author",
+      "foreignKey": "authorId"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
