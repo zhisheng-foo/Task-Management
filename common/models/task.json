@@ -14,10 +14,12 @@
     },
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength" : 60
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "maxLength" : 999
     },
     "status": {
       "type": "string",
