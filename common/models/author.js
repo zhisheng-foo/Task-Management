@@ -101,25 +101,29 @@ module.exports = function(Author) {
         http: {path: '/AuthorDelete/:id', verb: 'delete'}
     });
 
-    Author.viewAllTasks = function(authorId, callback) {
-      Author.findById(authorId, { include: 'tasks' }, function(err, authorInstance) {
-          if (err) {
-              callback(err);
-          } else if (!authorInstance) {
-              console.log("There is no author here")
-              callback(null, []);
-     
-          } else {
-              const tasks = authorInstance.tasks || []; 
-              callback(null, tasks);
-          }
-      });
-  };
-  
-    Author.remoteMethod('viewAllTasks', {
-      accepts: { arg: 'id', type: 'number', required: true },
-      returns: { arg: 'tasks', type: 'array' },
-      http: { path: '/viewAllTasks', verb: 'get' },
+    Author.customViewAllTasks = function(authorId, callback) {
+      
+    Author.findById(authorId, {include: 'tasks'}, function(err, authorInstance) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        if (!authorInstance) {
+            callback(new NoExistingAuthorError('Author not found'));
+            return;
+        }
+        
+        const tasks = authorInstance.tasks();
+        callback(null, tasks);
     });
+  };
+
+  
+    Author.remoteMethod('customViewAllTasks', {
+        accepts: {arg: 'authorId', type: 'number', required: true},
+        returns: {arg: 'tasks', type: 'array'},
+        http: {path: '/:id/customViewAllTasks', verb: 'get'}
+    });
+    
       
 };

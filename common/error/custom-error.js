@@ -1,6 +1,5 @@
 'use strict';
 
-// Custom ValidationError
 class ExistingAuthorError extends Error {
   constructor(message) {
     super(message);
