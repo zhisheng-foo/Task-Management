@@ -19,8 +19,17 @@ class NoExistingAuthorError extends Error {
   }
 }
 
+class NoExistingTaskException extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'NoExistingTaskException';
+    this.statusCode = 404; 
+  }
+}
+
 
 module.exports = {
   ExistingAuthorError,
-  NoExistingAuthorError
+  NoExistingAuthorError,
+  NoExistingTaskException
 };

@@ -122,10 +122,4 @@ module.exports = function(Author) {
       http: { path: '/viewAllTasks', verb: 'get' },
     });
       
-      
-
-
-
-
-
 };
