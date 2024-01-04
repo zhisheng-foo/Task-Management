@@ -16,9 +16,4 @@ export default class ApplicationController extends Controller {
   goToRegister() {
     this.router.transitionTo('register');
   }
-
-
- 
- 
-
 }
