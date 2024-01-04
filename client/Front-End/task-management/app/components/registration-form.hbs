@@ -1,0 +1,9 @@
+<div class="registration-form">
+  <h2>Task Management Application Registration</h2>
+  <input type="text" placeholder="Enter author name" {{on "input" this.updateAuthorName}} />
+  <button type="button" {{on "click" this.registerAuthor}}>Register Author</button>
+  <br><br>
+
+  {{this.registrationMessage}}
+  
+</div>

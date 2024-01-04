@@ -1,1 +1,9 @@
-/* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+/* app/styles/app.css */
+.success {
+    color: green;
+  }
+  
+  .failure {
+    color: red;
+  }
+  

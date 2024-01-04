@@ -24,6 +24,7 @@ module.exports = function(Author) {
         }
       });
     };
+    
       
     Author.remoteMethod('customCreate', {
         accepts: {arg: 'data', type: 'object', http: {source: 'body'}},
@@ -103,20 +104,20 @@ module.exports = function(Author) {
 
     Author.customViewAllTasks = function(authorId, callback) {
       
-    Author.findById(authorId, {include: 'tasks'}, function(err, authorInstance) {
-        if (err) {
-            callback(err);
-            return;
-        }
-        if (!authorInstance) {
-            callback(new NoExistingAuthorError('Author not found'));
-            return;
-        }
-        
-        const tasks = authorInstance.tasks();
-        callback(null, tasks);
-    });
-  };
+        Author.findById(authorId, {include: 'tasks'}, function(err, authorInstance) {
+            if (err) {
+                callback(err);
+                return;
+            }
+            if (!authorInstance) {
+                callback(new NoExistingAuthorError('Author not found'));
+                return;
+            }
+            
+            const tasks = authorInstance.tasks();
+            callback(null, tasks);
+        });
+    };
 
   
     Author.remoteMethod('customViewAllTasks', {
@@ -124,6 +125,21 @@ module.exports = function(Author) {
         returns: {arg: 'tasks', type: 'array'},
         http: {path: '/:id/customViewAllTasks', verb: 'get'}
     });
-    
-      
+
+    Author.customExist = function(name, callback) {
+        Author.count({ name: name }, function(err, count) {
+            if (err) {
+                callback(err);
+            } else {
+                callback(null, { exists: count > 0 });
+            }
+        });
+    };
+
+    Author.remoteMethod('customExist', {
+        accepts: { arg: 'name', type: 'string', required: true, http: { source: 'query' } },
+        returns: { arg: 'exists', type: 'boolean' },
+        http: { path: '/customExist', verb: 'get' }
+    });
+        
 };
