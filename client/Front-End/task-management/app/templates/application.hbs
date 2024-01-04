@@ -8,10 +8,13 @@ Enter your Name Here to Access the Task System Portal  :
 
 <button type="button" {{on "click" this.login}}>Enter</button>
 
+<div class={{if this.isLoginSuccessful "success" "failure"}}>
+  {{this.loginMessage}}
+</div>
+
 <br><br>
 If you haven't registered yet, click here to create an account :
 
 <button type="button" {{on "click" this.goToRegister}}>Register</button>
 
 {{outlet}}
-

@@ -4,6 +4,8 @@
   <button type="button" {{on "click" this.registerAuthor}}>Register Author</button>
   <br><br>
 
+  <div class="{{if this.isSuccess "success" "failure"}}">
   {{this.registrationMessage}}
+  </div>
   
 </div>
