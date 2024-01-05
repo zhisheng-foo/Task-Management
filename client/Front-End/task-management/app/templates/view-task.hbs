@@ -1,0 +1,31 @@
+{{page-title "ViewTask"}}
+
+<br><br>
+View Task
+<br><br>
+<form {{on "submit" this.viewTask}}>
+  <label for="taskTitle">Enter Task Title:</label>
+  <input type="text" id="taskTitle" {{on "input" this.updateTaskTitle}} value={{this.taskTitle}} />
+  <button type="submit">View Task</button>
+</form>
+
+{{#if this.showTaskAttributes}}
+  <h2>Task Details</h2>
+  <ul>
+    <li><strong>ID : </strong> {{this.taskAttributes.id}}</li>
+    <li><strong>Title : </strong> {{this.taskAttributes.title}}</li>
+    <li><strong>Description : </strong> {{this.taskAttributes.description}}</li>
+    <li><strong>Status : </strong> {{this.taskAttributes.status}}</li>
+    <li><strong>Due Date : </strong> {{this.taskAttributes.dueDate}}</li>
+    <li><strong>Author ID : </strong> {{this.taskAttributes.authorId}}</li>
+  </ul>
+{{/if}}
+{{#if this.message}}
+  <p class={{if this.isSuccessful "success" "failure"}}>
+    {{this.message}}
+  </p> 
+{{/if}}
+
+<br>
+<button type="button" {{on "click" this.goBack}}>Back to Task Management Portal</button>
+{{outlet}}

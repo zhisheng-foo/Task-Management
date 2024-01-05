@@ -21,7 +21,7 @@ export default class ApplicationController extends Controller {
           this.loginMessage = 'Login Successful';
           this.globalState.authorName = this.authorNameInput;
           this.globalState.authorId = response.exists.id;
-          console.log(this.globalState.authorName , this.globalState.authorId);
+          console.log(this.globalState.authorName, this.globalState.authorId);
           this.isLoginSuccessful = true;
           this.router.transitionTo('tasks');
         } else {
