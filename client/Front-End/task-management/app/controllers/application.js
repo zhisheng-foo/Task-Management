@@ -6,27 +6,34 @@ import { inject as service } from '@ember/service';
 export default class ApplicationController extends Controller {
   @service router;
   @service authorRegistration;
-  @tracked authorName = '';
-  @tracked loginMessage = ''; 
-  @tracked isLoginSuccessful
+  @service globalState;
+  @tracked authorNameInput = '';
+  @tracked loginMessage = '';
+  @tracked isLoginSuccessful;
 
   @action
   login() {
-    this.authorRegistration.checkAuthorExists(this.authorName).then(response => {
-      if (response.exists.exists === true) {
-        this.loginMessage = 'Login Successful';
-        this.isLoginSuccessful = true; 
-        this.router.transitionTo('tasks');
-      } else {
-        this.loginMessage = 'No such Author! Please go register!';
+    this.authorRegistration
+      .checkAuthorExists(this.authorNameInput)
+      .then((response) => {
+        console.log('Login response:', response);
+        if (response.exists.exists === true) {
+          this.loginMessage = 'Login Successful';
+          this.globalState.authorName = this.authorNameInput;
+          this.globalState.authorId = response.exists.id;
+          console.log(this.globalState.authorName , this.globalState.authorId);
+          this.isLoginSuccessful = true;
+          this.router.transitionTo('tasks');
+        } else {
+          this.loginMessage = 'No such Author! Please go register!';
+          this.isLoginSuccessful = false;
+        }
+      })
+      .catch((error) => {
+        console.error('Error checking author:', error);
+        this.loginMessage = 'Error occurred while checking author existence.';
         this.isLoginSuccessful = false;
-        this.router.transitionTo('application'); 
-      }
-    }).catch(error => {
-      console.error('Error checking author:', error);
-      this.loginMessage = 'Error occurred while checking author existence.';
-      this.isLoginSuccessful = false; 
-    });
+      });
   }
 
   @action

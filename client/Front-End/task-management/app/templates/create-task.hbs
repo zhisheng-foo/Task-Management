@@ -1,0 +1,50 @@
+{{page-title "CreateTask"}}
+<br><br>
+Create Task 
+<br><br>
+
+<form {{on "submit" this.createNewTask}}>
+  Title
+  <br>
+  {{input value=this.title placeholder= 'Enter your title'}}
+
+  <br><br>
+  Task Description
+  <br>
+  <!-- Textarea for description -->
+  {{textarea value=this.description placeholder="Description"}}
+
+
+  <br><br>
+  Task Status
+  <br>
+
+  <!-- Status dropdown -->
+  <select {{on "change" this.updateStatus}}>
+    <option value="todo">todo</option>
+    <option value="in-progress">in-Progress</option>
+    <option value="completed">completed</option>
+  </select>
+
+  <br><br>
+  Due Date
+  <br>
+  <!-- Due Date field -->
+  <input type="date" value={{this.dueDate}} {{on "change" this.updateDueDate}} />
+
+
+  <br><br>
+  <button type="submit">Create Task</button>
+   
+  <button type="button" {{on "click" this.cancelTaskCreation}} class="cancel-button">Cancel</button>
+
+  <br><br>
+  <!-- Display the message -->
+
+  <div class={{if this.isSuccessful "success" "failure"}}>
+    {{this.message}}
+  </div>
+
+</form>
+
+{{outlet}}

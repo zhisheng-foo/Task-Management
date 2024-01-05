@@ -8,8 +8,7 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('tasks');
-  this.route('login');
   this.route('register');
   this.route('router');
-  this.route('pretty-layout');
+  this.route('createTask');
 });
