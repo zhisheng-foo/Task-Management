@@ -127,14 +127,19 @@ module.exports = function(Author) {
     });
 
     Author.customExist = function(name, callback) {
-        Author.count({ name: name }, function(err, count) {
+        Author.findOne({ where: { name: name } }, function(err, author) {
             if (err) {
                 callback(err);
             } else {
-                callback(null, { exists: count > 0 });
+                if (author) {    
+                    callback(null, { exists: true, id: author.id });
+                } else {      
+                    callback(null, { exists: false });
+                }
             }
         });
     };
+    
 
     Author.remoteMethod('customExist', {
         accepts: { arg: 'name', type: 'string', required: true, http: { source: 'query' } },

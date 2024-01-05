@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
+
 export default class AuthorRegistrationService extends Service {
   @service store;
 
@@ -15,20 +16,17 @@ export default class AuthorRegistrationService extends Service {
     }).then((response) => response.json());
   }
 
- 
-
   checkAuthorExists(authorName) {
-    const accessToken = '12345'; 
-    const url = `http://localhost:3000/api/Authors/customExist?name=${encodeURIComponent(authorName)}&access_token=${encodeURIComponent(accessToken)}`;
-  
+    const accessToken = '12345';
+    const url = `http://localhost:3000/api/Authors/customExist?name=${encodeURIComponent(
+      authorName,
+    )}&access_token=${encodeURIComponent(accessToken)}`;
+
     return fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-      }
-    }).then(response => response.json());
+      },
+    }).then((response) => response.json());
   }
-  
-  
-
 }
