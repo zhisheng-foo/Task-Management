@@ -7,7 +7,7 @@
   color: red;
 }
 
-.create-task-button {
+.nice-button {
   /* Add your button styling here */
   padding: 8px 16px;
   background-color: #007bff;
@@ -16,7 +16,8 @@
   border-radius: 4px;
   cursor: pointer;
 }
-.create-task-button:hover {
+
+.nice-button:hover {
   background-color: #0056b3;
 }
 
@@ -33,7 +34,3 @@
 .cancel-button:hover {
   background-color: #d32f2f;
 }
-
-
-
-

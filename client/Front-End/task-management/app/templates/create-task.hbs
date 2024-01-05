@@ -11,7 +11,7 @@ Create Task
   <br><br>
   Task Description
   <br>
-  <!-- Textarea for description -->
+  {{!-- Textarea for description --}}
   {{textarea value=this.description placeholder="Description"}}
 
 
@@ -19,7 +19,7 @@ Create Task
   Task Status
   <br>
 
-  <!-- Status dropdown -->
+  {{!-- Status dropdown --}}
   <select {{on "change" this.updateStatus}}>
     <option value="todo">todo</option>
     <option value="in-progress">in-Progress</option>
@@ -29,7 +29,7 @@ Create Task
   <br><br>
   Due Date
   <br>
-  <!-- Due Date field -->
+  {{!-- Due Date field --}}
   <input type="date" value={{this.dueDate}} {{on "change" this.updateDueDate}} />
 
 
@@ -39,7 +39,7 @@ Create Task
   <button type="button" {{on "click" this.cancelTaskCreation}} class="cancel-button">Cancel</button>
 
   <br><br>
-  <!-- Display the message -->
+  {{!-- Display the message --}}
 
   <div class={{if this.isSuccessful "success" "failure"}}>
     {{this.message}}

@@ -7,15 +7,15 @@ export default class CreateTaskController extends Controller {
   @service router;
   @service task;
   @service globalState;
-  
+
   @tracked title = '';
   @tracked description = '';
-  @tracked status = 'todo'; 
+  @tracked status = 'todo';
   @tracked dueDate = '';
   @tracked authorId = this.globalState.authorId;
   @tracked message = '';
   @tracked isSuccessful = false;
-  
+
   @action
   updateStatus(event) {
     this.status = event.target.value;
@@ -25,19 +25,18 @@ export default class CreateTaskController extends Controller {
     this.dueDate = event.target.value;
   }
 
-
   @action
   createNewTask(event) {
     event.preventDefault();
-    
+
     const currentDate = new Date();
-    currentDate.setHours(0, 0, 0, 0); // Reset time part for accurate comparison
+    currentDate.setHours(0, 0, 0, 0);
     const selectedDate = new Date(this.dueDate);
 
     if (this.title.trim() === '') {
       this.message = 'Title cannot be blank.';
       this.isSuccessful = false;
-      return; 
+      return;
     } else if (this.dueDate.trim() === '') {
       this.message = 'Date cannot be blank.';
       this.isSuccessful = false;
@@ -47,7 +46,7 @@ export default class CreateTaskController extends Controller {
       this.isSuccessful = false;
       return;
     }
-  
+
     const taskData = {
       title: this.title,
       description: this.description,
@@ -56,17 +55,18 @@ export default class CreateTaskController extends Controller {
       authorId: this.globalState.authorId,
     };
 
-    this.task.createTask(taskData)
-      .then(response => {
+    this.task
+      .createTask(taskData)
+      .then((response) => {
         console.log('Task created:', response);
         this.resetForm();
         this.message = 'Task successfully created.';
         this.isSuccessful = true;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error creating task:', error);
-        this.message = 'Failed to create task. Please try again.'; 
-      }); 
+        this.message = 'Failed to create task. Please try again.';
+      });
   }
 
   @action
@@ -75,7 +75,7 @@ export default class CreateTaskController extends Controller {
     this.description = '';
     this.status = 'todo';
     this.dueDate = '';
-    this.isSuccessful = false
+    this.isSuccessful = false;
   }
 
   @action

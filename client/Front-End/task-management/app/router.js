@@ -11,4 +11,5 @@ Router.map(function () {
   this.route('register');
   this.route('router');
   this.route('createTask');
+  this.route('view-task');
 });
