@@ -12,4 +12,5 @@ Router.map(function () {
   this.route('router');
   this.route('createTask');
   this.route('view-task');
+  this.route('view-alltask');
 });

@@ -1,0 +1,32 @@
+{{!-- view-alltask.hbs --}}
+
+{{page-title "All Tasks"}}
+
+<h1>All Tasks</h1>
+
+{{!-- Task list rendering --}}
+{{#if this.tasks.tasks.length}}
+  <h2>View Tasks Details</h2>
+  {{#each this.tasks.tasks as |task|}}
+    <ul>
+      <li><strong>ID :</strong> {{task.id}}</li>
+      <li><strong>Title :</strong> {{task.title}}</li>
+      <li><strong>Description :</strong> {{task.description}}</li>
+      <li><strong>Status :</strong> {{task.status}}</li>
+      <li><strong>Due Date :</strong> {{task.dueDate}}</li>
+      <li><strong>Author ID :</strong> {{task.authorId}}</li>
+    </ul>
+  {{/each}}
+{{else}}
+  <p>No tasks found.</p> 
+{{/if}}
+
+<p>Number of tasks: {{this.tasks.tasks.length}}</p>
+
+<br>
+<LinkTo @route="tasks" class="back-button">Back to Task Page</LinkTo>
+
+{{outlet}}
+
+
+
