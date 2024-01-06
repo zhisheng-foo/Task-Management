@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default class CreateTaskController extends Controller {
   @service router;
-  @service task;
+  @service createTask;
   @service globalState;
 
   @tracked title = '';
@@ -55,7 +55,7 @@ export default class CreateTaskController extends Controller {
       authorId: this.globalState.authorId,
     };
 
-    this.task
+    this.createTask
       .createTask(taskData)
       .then((response) => {
         console.log('Task created:', response);
@@ -73,6 +73,7 @@ export default class CreateTaskController extends Controller {
   resetForm() {
     this.title = '';
     this.description = '';
+    this.message='';
     this.status = 'todo';
     this.dueDate = '';
     this.isSuccessful = false;
