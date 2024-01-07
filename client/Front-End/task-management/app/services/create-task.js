@@ -11,15 +11,15 @@ export default class CreateTaskService extends Service {
       },
       body: JSON.stringify(taskData),
     })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error("Network error or JSON parsing error:", error);
-      throw error;
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error('Network error or JSON parsing error:', error);
+        throw error;
+      });
   }
 }

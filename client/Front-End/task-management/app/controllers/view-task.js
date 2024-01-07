@@ -18,7 +18,7 @@ export default class ViewTaskController extends Controller {
 
   @action
   fetchTaskByTitle() {
-    this.task = this.taskData.fetchTaskByTitle(this.taskTitle);
+      this.task = this.taskData.fetchTaskByTitle(this.taskTitle);
   }
 
   @action

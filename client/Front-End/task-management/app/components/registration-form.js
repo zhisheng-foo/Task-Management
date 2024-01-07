@@ -16,19 +16,16 @@ export default class RegistrationForm extends Component {
 
   @action
   registerAuthor() {
-    // First check if author already exists
     this.authorRegistration
       .checkAuthorExists(this.authorName)
       .then((existsResponse) => {
         console.log('Exists response:', existsResponse.exists);
         if (existsResponse.exists.exists === true) {
-          // If the author already exists
           this.registrationMessage =
             'Author already exists, not creating a duplicate.';
           this.isSuccess = false;
         } else if (existsResponse.exists.exists === false) {
           console.log('Creating new author as it does not exist');
-          // Proceed to create a new author
           this.authorRegistration
             .createAuthor({ name: this.authorName })
             .then(() => {
