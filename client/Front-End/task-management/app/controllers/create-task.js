@@ -37,10 +37,6 @@ export default class CreateTaskController extends Controller {
       this.message = 'Title cannot be blank.';
       this.isSuccessful = false;
       return;
-    } else if (this.dueDate.trim() === '') {
-      this.message = 'Date cannot be blank.';
-      this.isSuccessful = false;
-      return;
     } else if (selectedDate < currentDate) {
       this.message = 'Due date cannot be in the past.';
       this.isSuccessful = false;
@@ -73,7 +69,7 @@ export default class CreateTaskController extends Controller {
   resetForm() {
     this.title = '';
     this.description = '';
-    this.message='';
+    this.message = '';
     this.status = 'todo';
     this.dueDate = '';
     this.isSuccessful = false;

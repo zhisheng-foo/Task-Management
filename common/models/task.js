@@ -5,15 +5,14 @@ const {NoExistingTaskException ,NoExistingAuthorError } = require('../error/cust
 module.exports = function(Task) {
 
   Task.createTask = function(data, callback) {
-    // Check if the authorId exists
-    var AuthorModel = Task.app.models.Author; // Assuming 'Author' is the name of your author model
+    
+    var AuthorModel = Task.app.models.Author; 
     AuthorModel.exists(data.authorId, function(err, exists) {
         if (err) {
             callback(err);
         } else if (!exists) {
             callback(new NoExistingAuthorError('Author not found'));
         } else {
-            // Proceed with creating the task
             Task.create(data, function(err, task) {
                 if (err) {
                     callback(err);
@@ -24,7 +23,6 @@ module.exports = function(Task) {
         }
     });
   };
-
 
   Task.remoteMethod('createTask', {
       accepts: [
@@ -126,7 +124,6 @@ module.exports = function(Task) {
     });
   }
   
-
   Task.remoteMethod('updateTask', {
       accepts: [
         { arg: 'taskId', type: 'string', required: true },
@@ -142,7 +139,6 @@ module.exports = function(Task) {
         if (err) {
           callback(err);
         } else {
-          // Task deleted successfully
           callback(null, { message: 'Task deleted successfully' });
         }
       });
@@ -156,4 +152,26 @@ module.exports = function(Task) {
       http: { verb: 'delete', path: '/deleteTask/:taskId' }
     });
 
+  Task.customTaskExist = function(title, callback) {
+    Task.findOne({ where: { title: title } }, function(err, task) {
+      if (err) {
+        callback(err);
+      } else {
+        if (!task) {
+          callback(null, { exists: false });
+        } else {
+          callback(null, { exists: true });
+        }
+      }
+    });
+  };
+
+  Task.remoteMethod('customTaskExist', {
+      accepts: [
+        { arg: 'title', type: 'string', required: true }
+      ],
+      returns: { arg: 'exists', type: 'boolean', root: true },
+      http: { verb: 'get', path: '/customExist/:title' }
+  });
+  
 };
