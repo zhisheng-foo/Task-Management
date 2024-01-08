@@ -7,11 +7,11 @@ export default class UpdateTaskController extends Controller {
   @service taskData;
   @service router;
 
-  @tracked taskInput = ''; // Updated when typing in the input field
+  @tracked taskInput = ''; 
   @tracked task = null;
   @tracked display = false;
   @tracked message = '';
-  @tracked messageUpdate;
+  @tracked messageUpdate ='';
   @tracked successfulFind = false;
 
   @action
@@ -29,35 +29,39 @@ export default class UpdateTaskController extends Controller {
     this.task.dueDate = event.target.value;
   }
 
-
   @action
   async fetchTaskByTitle(event) {
     event.preventDefault();
     this.message = '';
-    this.successfulFind = false; 
+    this.successfulFind = false;
 
     try {
-      console.log("Task Name : ", this.taskInput);
+      console.log('Task Name : ', this.taskInput);
+      const exists = await this.taskData.checkTaskExist(this.taskInput);
+      if(exists === null) {
+        this.message = "Input cannot be blank.";
+        this.successfulFind = false;
+        return;
+      }
       this.task = await this.taskData.fetchTaskByTitle(this.taskInput);
-      
+
       if (this.task) {
-        this.display = true; 
+        this.display = true;
         this.message = 'Task Found';
-        this.successfulFind =  true;
+        this.successfulFind = true;
       } else {
         this.display = false;
         this.message = 'No such task in the database';
         this.successfulFind = false;
       }
-      console.log("Task : ", this.task);
+      console.log('Task : ', this.task);
     } catch (error) {
       console.error('Error fetching task:', error);
       this.display = false;
-      this.message = 'There is some error, reload and try again'; 
+      this.message = 'There is some error, reload and try again';
       this.successfulFind = false;
     }
   }
-
 
   @action
   async updateExistingTask(event) {
@@ -69,31 +73,25 @@ export default class UpdateTaskController extends Controller {
       if (this.task.title.trim() === '') {
         this.messageUpdate = 'Title cannot be blank.';
         return;
-      } else if (this.task.dueDate.trim() === '') {
-        this.messageUpdate = 'Date cannot be blank.';
-        return;
       } else if (selectedDate < currentDate) {
         this.messageUpdate = 'Due date cannot be in the past.';
         return;
       }
-      await this.taskData.updateTask(this.task.id,this.task);
+      await this.taskData.updateTask(this.task.id, this.task);
       this.display = false;
       this.message = 'Task Updated';
-      this.messageUpdate = '';  
-      this.successfulFind = true; 
+      this.messageUpdate = '';
+      this.successfulFind = true;
     } catch (error) {
       console.error('Error updating task:', error);
-      
     }
   }
-  
+
   @action
   goBack() {
     this.display = false;
-    this.message = ''; 
+    this.message = '';
     this.successfulFind = false;
-    this.messageUpdate = ''; 
-    
+    this.messageUpdate = '';
   }
 }
-
