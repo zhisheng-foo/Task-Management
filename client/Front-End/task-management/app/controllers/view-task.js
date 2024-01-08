@@ -18,7 +18,7 @@ export default class ViewTaskController extends Controller {
 
   @action
   fetchTaskByTitle() {
-      this.task = this.taskData.fetchTaskByTitle(this.taskTitle);
+    this.task = this.taskData.fetchTaskByTitle(this.taskTitle);
   }
 
   @action
@@ -31,6 +31,12 @@ export default class ViewTaskController extends Controller {
     event.preventDefault();
 
     try {
+      const exists = await this.taskData.checkTaskExist(this.taskTitle);
+      if(exists === null) {
+        this.message = "Input cannot be blank.";
+        this.isSuccessful = false;
+        return;
+      }
       const task = await this.taskData.fetchTaskByTitle(this.taskTitle);
       if (task) {
         this.taskAttributes = {
@@ -47,7 +53,7 @@ export default class ViewTaskController extends Controller {
       } else {
         this.showTaskAttributes = false;
         this.isSuccessful = false;
-        this.message = 'No such task in the database'; // No message is displayed
+        this.message = 'No such task in the database'; 
       }
     } catch (error) {
       console.error('Error fetching task:', error);

@@ -2,11 +2,16 @@ import Service from '@ember/service';
 import { action } from '@ember/object';
 
 export default class TaskDataService extends Service {
-
   @action
   checkTaskExist(taskName) {
+    if (taskName.trim() == "") {
+      console.log('Task name is empty');
+      return Promise.resolve(null); 
+    }
     const accessToken = '12345';
-    const url = `http://localhost:3000/api/Tasks/customExist/${encodeURIComponent(taskName)}?access_token=${encodeURIComponent(accessToken)}`;
+    const url = `http://localhost:3000/api/Tasks/customExist/${encodeURIComponent(
+      taskName,
+    )}?access_token=${encodeURIComponent(accessToken)}`;
 
     return fetch(url)
       .then((response) => {
@@ -24,40 +29,47 @@ export default class TaskDataService extends Service {
   @action
   fetchTaskByTitle(title) {
     const accessToken = '12345';
-    const url = `http://localhost:3000/api/Tasks/retrieveTaskByTitle/${encodeURIComponent(title)}?access_token=${encodeURIComponent(accessToken)}`;
-  
-    return this.checkTaskExist(title).then(exists => {
-      if (exists.exists === true) {
-        console.log(exists);
-        return fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            console.error('Fetch unsuccessful:', response.status, response.statusText);
-            console.log(response);
-            return null;
-          }
-        })
-        .catch((error) => {
-          console.error('Error fetching task by title:', error);
+    const url = `http://localhost:3000/api/Tasks/retrieveTaskByTitle/${encodeURIComponent(
+      title,
+    )}?access_token=${encodeURIComponent(accessToken)}`;
+
+    return this.checkTaskExist(title)
+      .then((exists) => {
+        if (exists.exists === true) {
+          console.log(exists);
+          return fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                console.error(
+                  'Fetch unsuccessful:',
+                  response.status,
+                  response.statusText,
+                );
+                console.log(response);
+                return null;
+              }
+            })
+            .catch((error) => {
+              console.error('Error fetching task by title:', error);
+              return null;
+            });
+        } else {
+          console.log('Task does not exist:', title);
           return null;
-        });
-      } else {
-        console.log('Task does not exist:', title);
+        }
+      })
+      .catch((error) => {
+        console.error('Error in checking task existence:', error);
         return null;
-      }
-    }).catch((error) => {
-      console.error('Error in checking task existence:', error);
-      return null;
-    });
+      });
   }
-  
 
   @action
   viewAllTasks(authorId) {
@@ -84,12 +96,14 @@ export default class TaskDataService extends Service {
         return null;
       });
   }
-  
+
   @action
   updateTask(taskId, taskData) {
     const accessToken = '12345';
-    const url = `http://localhost:3000/api/Tasks/updateTask/${taskId}?access_token=${encodeURIComponent(accessToken)}`;
-  
+    const url = `http://localhost:3000/api/Tasks/updateTask/${taskId}?access_token=${encodeURIComponent(
+      accessToken,
+    )}`;
+
     return fetch(url, {
       method: 'PUT',
       headers: {
@@ -97,16 +111,38 @@ export default class TaskDataService extends Service {
       },
       body: JSON.stringify(taskData),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .catch(error => {
-      console.error('Error updating task:', error);
-      throw error;
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error('Error updating task:', error);
+        throw error;
+      });
   }
-  
+
+  @action
+  deleteTaskByName(taskName) {
+      const accessToken = '12345'; 
+      const url = `http://localhost:3000/api/Tasks/deleteTaskByName/${encodeURIComponent(taskName)}?access_token=${encodeURIComponent(accessToken)}`;
+
+      return fetch(url, {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`HTTP error: ${response.status}`);
+          }
+          return response.json();
+      })
+      .catch(error => {
+          console.error('Error deleting task:', error);
+          throw error;
+      });
+  }
 }

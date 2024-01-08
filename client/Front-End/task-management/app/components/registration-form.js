@@ -6,8 +6,11 @@ import { inject as service } from '@ember/service';
 export default class RegistrationForm extends Component {
   @tracked authorName = '';
   @tracked registrationMessage = '';
+
   @tracked isSuccess = false;
   @service authorRegistration;
+
+  
 
   @action
   updateAuthorName(event) {
@@ -16,10 +19,15 @@ export default class RegistrationForm extends Component {
 
   @action
   registerAuthor() {
+    if(this.authorName === '') {
+      this.registrationMessage = 'Input cannot be blank';
+      this.isSuccess = false;
+      return;
+    }
     this.authorRegistration
       .checkAuthorExists(this.authorName)
       .then((existsResponse) => {
-        console.log('Exists response:', existsResponse.exists);
+        console.log('Exists response:', existsResponse);
         if (existsResponse.exists.exists === true) {
           this.registrationMessage =
             'Author already exists, not creating a duplicate.';
