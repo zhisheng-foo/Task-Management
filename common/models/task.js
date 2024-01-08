@@ -134,23 +134,34 @@ module.exports = function(Task) {
 
   });
 
-  Task.deleteTask = function(taskId, callback) {
-      Task.destroyById(taskId, function(err) {
+  Task.deleteTaskByName = function(title, callback) {
+   
+    Task.findOne({ where: { title: title } }, function(err, task) {
         if (err) {
-          callback(err);
+            callback(err);
+        } else if (!task) {
+           
+            callback(new Error('Task not found'));
         } else {
-          callback(null, { message: 'Task deleted successfully' });
+            Task.destroyById(task.id, function(err) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, { message: 'Task deleted successfully' });
+                }
+            });
         }
-      });
+    });
   };
 
-  Task.remoteMethod('deleteTask', {
+  Task.remoteMethod('deleteTaskByName', {
       accepts: [
-        { arg: 'taskId', type: 'string', required: true }
+          { arg: 'title', type: 'string', required: true }
       ],
       returns: { arg: 'message', type: 'object', root: true },
-      http: { verb: 'delete', path: '/deleteTask/:taskId' }
-    });
+      http: { verb: 'delete', path: '/deleteTaskByName/:title' }
+  });
+
 
   Task.customTaskExist = function(title, callback) {
     Task.findOne({ where: { title: title } }, function(err, task) {
