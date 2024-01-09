@@ -1,21 +1,22 @@
 {{page-title "Tasks"}}
-
+<div class="container">
 <br><br>
-Welcome to Task Management Portal
-{{this.globalState.authorName}}  {{this.globalState.authorId}}
-<br><br>
-<LinkTo @route="createTask" class="nice-button">Create New Task</LinkTo>
+    <h2>{{this.globalState.authorName}}, welcome to Task Management Portal</h2>
 
-<br><br>
-<LinkTo @route="view-task" class="nice-button">View Particular Task</LinkTo>
+    <LinkTo @route="createTask" class="nice-button label-style">Create New Task</LinkTo>
 
-<br><br>
-<LinkTo @route="view-alltask" class="nice-button">View All Task</LinkTo>
+    
+    <LinkTo @route="view-task" class="nice-button label-style">View Particular Task</LinkTo>
 
-<br><br>
-<LinkTo @route="update-task" class="nice-button">Update Task</LinkTo>
+  
+    <LinkTo @route="view-alltask" class="nice-button label-style">View All Task</LinkTo>
 
-<br><br>
-<LinkTo @route="delete-task" class="nice-button">Delete Task</LinkTo>
 
+    <LinkTo @route="update-task" class="nice-button label-style">Update Task</LinkTo>
+
+   
+    <LinkTo @route="delete-task" class="nice-button label-style">Delete Task</LinkTo>
+
+    <button class="cancel-button label-style right" type="button" {{on "click" this.goBack}}>Back to Task Management Portal</button>
+</div>
 {{outlet}}

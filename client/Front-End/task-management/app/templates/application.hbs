@@ -1,20 +1,18 @@
 {{page-title "TaskManagement"}}
-
-Welcome to my Task Management Application
-<br><br>
-
-Enter your Name Here to Access the Task System Portal  :
-{{input value=this.authorNameInput placeholder= 'Enter your name'}}
-
-<button type="button" {{on "click" this.login}}>Enter</button>
-
-<div class={{if this.isLoginSuccessful "success" "failure"}}>
-  {{this.loginMessage}}
+<div class="container">
+    <h1>Welcome to my Task Management Application</h1>
+    <br><br>
+    <label class="label-style">Enter your Name Here to Access the Task System Portal:</label>
+    {{input value=this.authorNameInput placeholder= 'Enter your name'}}
+    <button type="button" class="button" {{on "click" this.login}}>Enter</button>
+    <div class={{if this.isLoginSuccessful "success" "failure"}}>
+        {{this.loginMessage}}
+    </div>
+    <br>
+    <div class="registration-section">
+        <label class="label-style">If you haven't registered yet, click here to create an account : </label>
+        <button type="button" class="button" {{on "click" this.goToRegister}}>Register</button>
+    </div>
 </div>
-
-<br><br>
-If you haven't registered yet, click here to create an account :
-
-<button type="button" {{on "click" this.goToRegister}}>Register</button>
-
 {{outlet}}
+

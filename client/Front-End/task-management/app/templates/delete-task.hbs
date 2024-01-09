@@ -1,22 +1,20 @@
+{{page-title "Delete Task"}}
 <h1>Delete Task</h1>
+<div class="container">
+    <form {{on "submit" this.deleteTask}}>
+        <label for="taskName" class="label-style">Delete Task</label>
+        <label for="taskName" class="input-style">Task Name:</label>
+        <input type="text" id="taskName" value={{this.taskName}} {{on "input" this.updateTaskName}} />
 
-<form {{on "submit" this.deleteTask}}>
-    <label for="taskName">Task Name:</label>
-    <input type="text" id="taskName" value={{this.taskName}} {{on "input" this.updateTaskName}} />
+        <button type="submit"class="nice-button label-style">Delete Task</button>
+        {{#if this.message}}
+        <p class={{if this.successful "success" "failure"}}> {{this.message}} </p> 
+        {{/if}}
+       
+    </form>
 
-    <button type="submit">Delete Task</button>
-    <br>
-    {{#if this.message}}
-    <p class={{if this.successful "success" "failure"}}> {{this.message}} </p> 
-    {{/if}}
-    <br>
-   
-</form>
-
-<LinkTo @route="tasks" class="nice-button">Return to task</LinkTo>
-
-
-
+    <button class="nice-button label-style" type="button" {{on "click" this.goBack}}>Back to Task Management Portal</button>
+</div>
 {{outlet}}
 
 

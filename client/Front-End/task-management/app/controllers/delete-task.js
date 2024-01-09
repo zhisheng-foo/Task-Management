@@ -1,5 +1,3 @@
-
-
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
@@ -47,6 +45,14 @@ export default class DeleteTaskController extends Controller {
             this.message = 'Error occurred during task deletion';
             this.successful = false;
         }
+    }
+
+    @action
+    goBack() {
+        this.message = '';
+        this.successfulFind = false;
+        this.taskName = '';
+        this.router.transitionTo('tasks');
     }
 
 }

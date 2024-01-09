@@ -58,7 +58,6 @@ export default class CreateTaskController extends Controller {
     this.createTask
       .createTask(taskData)
       .then((response) => {
-        console.log('Task created:', response);
         this.resetForm();
         this.message = 'Task successfully created.';
         this.isSuccessful = true;

@@ -1,61 +1,58 @@
 {{page-title "Update Task"}}
 
-<br><br>
-Update Task Module
-
-<form {{on "submit" this.fetchTaskByTitle}}>
-  <label for="taskTitle">Enter Task Title to Update:</label>
-  <input type="text" id="taskTitle" {{on "input" this.updateTaskInput}} value={{this.taskInput}} />
-  <br>
-  {{#if this.message}}
-  <p class={{if this.successfulFind "success" "failure"}}> {{this.message}} </p> 
-{{/if}}
-  <br>
-  <button type="submit">Retrieve Task</button>
-
-  <br><br>
-  <LinkTo @route="tasks">Back to Task Page</LinkTo>
-</form>
-
-{{#if this.display}}
-  <form {{on "submit" this.updateExistingTask}}>
-    <label for="title">Title:</label>
+<div class="container">
+ 
+  <label class="label-style">Update Task</label>
+  
+  <form {{on "submit" this.fetchTaskByTitle}}>
+    <label for="taskTitle" class="input-style">Enter Task Title to Update:</label>
+    <input type="text" id="taskTitle" {{on "input" this.updateTaskInput}} value={{this.taskInput}} />
     <br>
-    {{input id="title" value=this.task.title placeholder='Enter your title'}}
-
-    <br><br>
-    <label for="description">Task Description:</label>
+    {{#if this.message}}
+    <p class={{if this.successfulFind "success" "failure"}}> {{this.message}} </p> 
+    {{/if}}
     <br>
-    {{!-- Textarea for description --}}
-    {{textarea id="description" value=this.task.description placeholder="Description"}}
-
-    <br><br>
-    <label for="status">Task Status:</label>
-    <br>
-    {{!-- Status dropdown --}}
-    <select id="status" value={{this.task.status}} {{on "change" this.updateTaskStatus}}>
-      <option value="todo">Todo</option>
-      <option value="in-progress">In Progress</option>
-      <option value="completed">Completed</option>
-    </select>
-
-    <br><br>
-    <label for="dueDate">Due Date:</label>
-    <br>
-    {{!-- Due Date field --}}
-    <input type="date" id="dueDate" value={{this.task.dueDate}} {{on "change" this.updateTaskDueDate}} />
-
-    <br><br>
-    <button type="submit">Update Task</button>
+    <button type="submit" class="nice-button label-style">Retrieve Task</button>
+    <button class="nice-button label-style" type="button" {{on "click" this.goBack}}>Back to Task Management Portal</button>
   </form>
-  <br>
-  <button type="button" {{on "click" this.goBack}} >Back</button>
-  <br>
-  {{#if this.messageUpdate}}
-  <p class= "failure"> {{this.messageUpdate}} </p> 
-  {{/if}}
-{{/if}}
 
+  {{#if this.display}}
+    <form {{on "submit" this.updateExistingTask}}>
+      <label for="title" class="input-style">Title:</label>
+      {{!-- Text Title --}}
+      {{input id="title" value=this.task.title placeholder='Enter your title'}}
+      <br><br>
+
+      <label for="description" class="input-style">Task Description:</label>
+      {{!-- Textarea for description --}}
+      {{textarea id="description" value=this.task.description placeholder="Description"}}
+
+      <br><br>
+      <label for="status" class="input-style">Task Status:</label>
+      {{!-- Status dropdown --}}
+      <select id="status" value={{this.task.status}} {{on "change" this.updateTaskStatus}}>
+        <option value="todo">Todo</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+      
+      <br><br>
+      <label for="dueDate" class="input-style">Due Date:</label>
+      {{!-- Due Date field --}}
+      <input type="date" id="dueDate" value={{this.task.dueDate}} {{on "change" this.updateTaskDueDate}} />
+
+      <br><br>
+      <button type="submit" class="nice-button label-style">Update Task</button>
+
+    </form>
+    <button type="button" class="cancel-button label-style" {{on "click" this.goBack}} >Cancel</button>
+
+    {{#if this.messageUpdate}}
+    <p class= "failure"> {{this.messageUpdate}} </p> 
+    {{/if}}
+    
+  {{/if}}
+</div>
 {{outlet}}
 
 
