@@ -13,20 +13,24 @@ export default class ApplicationController extends Controller {
 
   @action
   login() {
+    if(this.authorNameInput === '') {
+      this.loginMessage = 'Input cannot be blank';
+      this.isLoginSuccessful = false;
+      return;
+    }
     this.authorRegistration
       .checkAuthorExists(this.authorNameInput)
       .then((response) => {
-        console.log('Login response:', response);
         if (response.exists.exists === true) {
           this.loginMessage = 'Login Successful';
           this.globalState.authorName = this.authorNameInput;
           this.globalState.authorId = response.exists.id;
-          console.log(this.globalState.authorName, this.globalState.authorId);
           this.isLoginSuccessful = true;
           this.router.transitionTo('tasks');
         } else {
           this.loginMessage = 'No such Author! Please go register!';
           this.isLoginSuccessful = false;
+          this.router.transitionTo('application');
         }
       })
       .catch((error) => {

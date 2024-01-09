@@ -1,31 +1,29 @@
-{{!-- view-alltask.hbs --}}
-
 {{page-title "All Tasks"}}
+<div class="container">
+  <h1>All Tasks</h1>
 
-<h1>All Tasks</h1>
+  {{!-- Task list rendering --}}
+  {{#if this.tasks.tasks.length}}
+    <label class="label-style">View All Task Details</label>
+    {{#each this.tasks.tasks as |task|}}
+      <ul>
+        <li class="input-style"><strong>ID :</strong> {{task.id}}</li>
+        <li class="input-style"><strong>Title :</strong> {{task.title}}</li>
+        <li class="input-style"><strong>Description :</strong> {{task.description}}</li>
+        <li class="input-style"><strong>Status :</strong> {{task.status}}</li>
+        <li class="input-style"><strong>Due Date :</strong> {{task.dueDate}}</li>
+        <li class="input-style"><strong>Author ID :</strong> {{task.authorId}}</li>
+      </ul>
+    {{/each}}
+  {{else}}
+    <label class="label-style">No tasks found</label>
+  {{/if}}
 
-{{!-- Task list rendering --}}
-{{#if this.tasks.tasks.length}}
-  <h2>View Tasks Details</h2>
-  {{#each this.tasks.tasks as |task|}}
-    <ul>
-      <li><strong>ID :</strong> {{task.id}}</li>
-      <li><strong>Title :</strong> {{task.title}}</li>
-      <li><strong>Description :</strong> {{task.description}}</li>
-      <li><strong>Status :</strong> {{task.status}}</li>
-      <li><strong>Due Date :</strong> {{task.dueDate}}</li>
-      <li><strong>Author ID :</strong> {{task.authorId}}</li>
-    </ul>
-  {{/each}}
-{{else}}
-  <p>No tasks found.</p> 
-{{/if}}
+  <h4>Number of tasks: {{this.tasks.tasks.length}}</h4>
 
-<p>Number of tasks: {{this.tasks.tasks.length}}</p>
-
-<br>
-<LinkTo @route="tasks" class="back-button">Back to Task Page</LinkTo>
-
+  <br>
+  <button class="nice-button label-style" type="button" {{on "click" this.goBack}}>Back to Task Management Portal</button>
+</div>
 {{outlet}}
 
 

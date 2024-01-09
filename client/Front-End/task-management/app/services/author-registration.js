@@ -1,7 +1,9 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
 export default class AuthorRegistrationService extends Service {
+  @action
   createAuthor(authorData) {
     return fetch('http://localhost:3000/api/Authors/customCreate', {
       method: 'POST',
@@ -22,7 +24,7 @@ export default class AuthorRegistrationService extends Service {
         throw error;
       });
   }
-
+  @action
   checkAuthorExists(authorName) {
     const accessToken = '12345';
     const url = `http://localhost:3000/api/Authors/customExist?name=${encodeURIComponent(

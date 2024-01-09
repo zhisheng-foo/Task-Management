@@ -36,7 +36,6 @@ export default class UpdateTaskController extends Controller {
     this.successfulFind = false;
 
     try {
-      console.log('Task Name : ', this.taskInput);
       const exists = await this.taskData.checkTaskExist(this.taskInput);
       if(exists === null) {
         this.message = "Input cannot be blank.";
@@ -93,5 +92,6 @@ export default class UpdateTaskController extends Controller {
     this.message = '';
     this.successfulFind = false;
     this.messageUpdate = '';
+    this.router.transitionTo('tasks');
   }
 }

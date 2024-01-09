@@ -1,7 +1,7 @@
-<div class="registration-form">
-  <h2>Task Management Application Registration</h2>
+<div class="registration-form container">
+  <label class="label-style" >Task Management Application Registration</label>
   <input type="text" placeholder="Enter author name" {{on "input" this.updateAuthorName}} />
-  <button type="button" {{on "click" this.registerAuthor}}>Register Author</button>
+  <button type="button" class="button" {{on "click" this.registerAuthor}}>Register Author</button>
   <br><br>
 
   <div class="{{if this.isSuccess "success" "failure"}}">
