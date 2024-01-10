@@ -108,8 +108,6 @@ After completing these steps, the TaskManagement application should be running l
     
    ![image](https://github.com/zhisheng-foo/Task-Management/assets/105271950/cfd39fdf-0f79-49a4-8999-91e1995ad0b8)
 
-Yes, providing a video of you testing both the backend and frontend of your application is an excellent idea. Videos can be incredibly helpful for demonstrating how the application works, showcasing its features, and guiding users through the testing process. Here's how you can incorporate this into your README:
-
 ---
 
 ## Testing
@@ -125,6 +123,42 @@ To facilitate a better understanding of how TaskMaster Pro works and how you can
 - **Link to Video**: [Frontend Testing Demo](https://drive.google.com/drive/folders/1e4-PdFOFWUrqR55wc3SrDE1XbaY32a-G?usp=sharing)
 
 ---
+Certainly! The "Contributing" section of your README is where you guide potential contributors on how they can help improve your TaskMaster Pro application. This section can include guidelines for submitting issues, pull requests, and general rules for contributing. Here's an example you can use:
+
+---
+
+## Contributing
+
+I warmly welcome contributions to the TaskManagement project. If you're looking to contribute, here's how you can help.
+
+### Reporting Issues
+
+If you find any bugs or have suggestions for improvements:
+
+1. Check if the issue has already been reported.
+2. If not, create a new issue, providing a clear description of the problem or enhancement. Include screenshots if applicable.
+
+### Submitting Pull Requests
+
+For submitting code changes, such as bug fixes or new features:
+
+1. **Fork the Repository**: Start by forking the TaskMaster Pro repository on GitHub.
+2. **Create a Branch**: Create a branch in your fork for your changes. Use a clear and descriptive name for your branch.
+3. **Make Your Changes**: Implement your changes or fixes in your branch. Ensure your code follows the existing coding standards and style.
+4. **Test Your Changes**: Before submitting, thoroughly test your changes.
+5. **Create a Pull Request**: Submit a pull request to the original repository. Provide a clear and detailed description of your changes and the benefits they bring.
+6. **Code Review**: Wait for a review from the maintainers. Be open to feedback and make any requested changes.
+
+### Contribution Guidelines
+
+- Ensure your code is well-documented and easy to understand.
+- Adhere to the coding conventions and style of the project.
+- Update the README.md or documentation if necessary.
+
+---
+
+
+
 
 
    
