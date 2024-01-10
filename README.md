@@ -120,10 +120,7 @@ To facilitate a better understanding of how TaskMaster Pro works and how you can
 
 ### Frontend Testing Video
 - **Description**: In this video, you will see a walkthrough of the frontend interface, demonstrating user interactions, task management features, and responsiveness of the application.
-- **Link to Video**: [Frontend Testing Demo](https://drive.google.com/drive/folders/1e4-PdFOFWUrqR55wc3SrDE1XbaY32a-G?usp=sharing)
-
----
-Certainly! The "Contributing" section of your README is where you guide potential contributors on how they can help improve your TaskMaster Pro application. This section can include guidelines for submitting issues, pull requests, and general rules for contributing. Here's an example you can use:
+- **Link to Video**: [Frontend Testing Demo](https://drive.google.com/file/d/1bpJ9xB35tUQFLg01ExW5V77l3yno8HFL/view?usp=sharing)
 
 ---
 
