@@ -112,8 +112,6 @@ After completing these steps, the TaskManagement application should be running l
 
 ## Testing
 
-To facilitate a better understanding of how TaskMaster Pro works and how you can manually test its functionalities, we have provided video demonstrations covering both the backend and frontend components.
-
 ### Backend Testing Video
 - **Description**: This video covers testing of the backend functionalities, including API endpoints, database interactions, and server-side logic.
 - **Link to Video**: [Backend Testing Demo](https://drive.google.com/drive/folders/13bp_zPqFmvuz2S7Z8HCrwlOYeauMXel2?usp=sharing)
