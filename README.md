@@ -86,7 +86,7 @@ After completing these steps, the TaskManagement application should be running l
 
 2. Log in with your credentials.
    
-   ![image](https://github.com/zhisheng-foo/Task-Management/assets/105271950/21f683eb-0d15-4830-99f1-aaaafdbaed83)
+   ![image](https://github.com/zhisheng-foo/Task-Management/assets/105271950/f4679306-73be-4972-81cb-0e53fa8be3b4)
 
 3. Create a new task by clicking on 'Create New Task'
 
@@ -118,7 +118,7 @@ After completing these steps, the TaskManagement application should be running l
 
 ### Frontend Testing Video
 - **Description**: In this video, you will see a walkthrough of the frontend interface, demonstrating user interactions, task management features, and responsiveness of the application.
-- **Link to Video**: [Frontend Testing Demo](https://drive.google.com/file/d/1bpJ9xB35tUQFLg01ExW5V77l3yno8HFL/view?usp=sharing)
+- **Link to Video**: [Frontend Testing Demo](https://drive.google.com/file/d/10t0KJjst2I3TUjbqkGJHsyncPl6zgw9x/view?usp=sharing)
 
 ---
 
